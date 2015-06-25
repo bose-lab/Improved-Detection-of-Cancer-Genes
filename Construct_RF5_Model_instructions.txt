@@ -1,0 +1,27 @@
+6-24-2015
+
+INSTRUCTIONS TO USE Construct_RF5_Model.r 
+
+1) Install the most recent version of R on your operating system of choice. The R installer is quite good about
+	setting environmental paths so that you can access the required utilities from commandline. 
+	
+2) Install the randomForest package for R. This can be accomplished easily from within the R interactive interface
+	with the following command: >install.packages("randomForest")
+	
+3) Test that the Rscript utility is accessable. Typing "Rscript" into commandline should result in usage instructions. 
+	If it does not, check the R installation guidelines for your operating system.
+
+4) Format your input file. Ensure it is tab delimited and that the column headers match those found in
+	example_cosmic_data.txt. The "Label" column is the only optional column. If it is absent or incorrect, the script will 
+	use the default HiConf cancer gene panel to generate a label vector. 
+	
+5) If you would like to see the predictions that the published pan-cancer RF5 model would make on new data, ensure
+	that final_pan-cancer_RF5_model.Rdata is present in the working directory. 
+	
+6) Run the script with: $Rscript Construct_RF5_Model.r <input_file>
+
+7) The genes, five test results, random forest Out-of-Bag vote proportions and label vector will be written to <input_file>.rf5.output.txt
+
+NOTE to users: The script will train a new RF5 model for the provided data (custom model), and it will also apply the 
+model from the manuscript directly if it is available (published model). Predictions for the published model are provided for comparison
+only. In general, the custom model that is retrained on new data will be more accurate and relevant.  
